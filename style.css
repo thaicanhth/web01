@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: #eec0c6;
+    background-image: radial-gradient(#eec0c6, #e58c8a);
+    font-family: 'Parisienne', cursive;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(#eec0c6, #e58c8a);
+    justify-content: center;
+    align-items: center;
+    animation: loadingFadeOutAnim 5.5s linear forwards;
+    z-index: 10;
+}
+
+@keyframes loadingFadeOutAnim {
+    0%, 90% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.loading .loading-bar {
+    position: relative;
+    height: 40px;
+    width: 400px;
+    background: transparent;
+    border: 2px solid #000000;
+    margin: 0 20px;
+}
+
+.loading .loading-bar::after {
+    content: "Loading...";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 36px;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    mix-blend-mode: difference;
+}
+
+.loading .loading-bar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000000;
+    transform-origin: left;
+    animation: unfoldAnim 5s linear forwards;
+}
+
+.ribbon {
+    position: relative;
+    width: 400px;
+}
+
+.ribbon div {
+    position: relative;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    transform: skewY(-5deg);
+    margin: -30px 0;
+    z-index: 2;
+}
+
+.ribbon div:nth-child(2), .ribbon div:nth-child(4) {
+    transform: skewY(14.5deg);
+    z-index: 1;
+}
+
+.ribbon div:nth-child(4) {
+    top: -52px;
+    transform: skewY(25deg);
+    transform-origin: left;
+}
+
+.ribbon div::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.ribbon div:nth-child(1)::before, .ribbon div:nth-child(3)::before {
+    background: linear-gradient(-160deg, #37d5d6, #36096d);
+    transform: scaleX(0);
+}
+
+.ribbon div:nth-child(2)::before, .ribbon div:nth-child(4)::before {
+    background: linear-gradient(-20deg, #37d5d6, #36096d);
+    transform: scaleX(0);
+}
+
+.ribbon div:nth-child(1)::before {
+    transform-origin: right;
+    animation: unfoldAnim 1s linear forwards;
+    animation-delay: 6s;
+    backface-visibility: hidden;
+}
+
+.ribbon div:nth-child(2)::before {
+    transform-origin: left;
+    animation: unfoldAnim 1s linear forwards;
+    animation-delay: 7s;
+    backface-visibility: hidden;
+}
+
+.ribbon div:nth-child(3)::before {
+    transform-origin: right;
+    animation: unfoldAnim 1s linear forwards;
+    animation-delay: 8s;
+    backface-visibility: hidden;
+}
+
+.ribbon div:nth-child(4)::before {
+    left: 0;
+    width: 66.67%;
+    transform-origin: left;
+    animation: unfoldAnim 1s linear forwards;
+    animation-delay: 9s;
+    backface-visibility: hidden;
+}
+
+.ribbon div:nth-child(1)::after, .ribbon div:nth-child(3)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50%;
+    width: 100%;
+}
+
+.ribbon div h2 {
+    position: relative;
+    color: #ffffff;
+    z-index: 7;
+    opacity: 0;
+}
+
+.ribbon div:nth-child(1) h2 {
+    font-size: 48px;
+    animation: textFadeInAnim 0.5s linear forwards;
+    animation-delay: 6.75s;
+}
+
+.ribbon div:nth-child(3) h2 {
+    font-size: 84px;
+    animation: textFadeInAnim 0.5s linear forwards;
+    animation-delay: 8.75s;
+}
+
+@keyframes unfoldAnim {
+    0% {
+        transform: scaleX(0);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes textFadeInAnim {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+canvas {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
